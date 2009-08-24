@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" >
+	<mx:Canvas x="18" y="17" width="84" height="69" id="cvsDefault" backgroundColor="#3B3B3B"/>
+	<mx:Image x="1" y="1" width="46" height="46" id="imgPlayerOneReady"/>
+	<mx:Image x="76" y="58" width="46" height="46" id="imgPlayerTwoReady"/>
+	<mx:Script>
+		<![CDATA[
+			public var playerOneReady:Boolean=false;
+			public var playerTwoReady:Boolean=false;
+		]]>
+	</mx:Script>
+</mx:Canvas>

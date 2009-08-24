@@ -1,4 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="*" xmlns:ns2="com.ubisoft.chess.components.*">
+	<mx:states>
+		<mx:State name="lobby">
+			<mx:RemoveChild target="{canvas1}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas y="0" width="490" height="378" horizontalCenter="50" backgroundColor="#B3FFAB">
+					<ns2:GameShow x="32" y="10">
+					</ns2:GameShow>
+					<ns2:GameShow x="183" y="10">
+					</ns2:GameShow>
+					<ns2:GameShow x="338" y="10">
+					</ns2:GameShow>
+					<ns2:GameShow x="32" y="135">
+					</ns2:GameShow>
+					<ns2:GameShow x="32" y="261">
+					</ns2:GameShow>
+					<ns2:GameShow x="183" y="135">
+					</ns2:GameShow>
+					<ns2:GameShow x="338" y="135">
+					</ns2:GameShow>
+					<ns2:GameShow x="183" y="261">
+					</ns2:GameShow>
+					<ns2:GameShow x="338" y="261">
+					</ns2:GameShow>
+				</mx:Canvas>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas x="10" y="380"  cornerRadius="10" borderStyle="solid" borderColor="#000000">
+					<mx:TextArea x="5" y="131" width="282" height="36"/>
+					<mx:TextArea x="10" y="10" width="439" height="110"/>
+					<mx:Button x="310" y="135" label="Send"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Style source="assets/css/SummerSky.css"/>
+	<mx:Canvas x="399" y="81" width="346" height="193" borderStyle="solid" cornerRadius="8" borderColor="#000000" id="canvas1">
+		<mx:TextInput x="145" y="64"/>
+		<mx:Label x="145" y="38" text="Enter ur nickname" fontFamily="Georgia" color="#020202"/>
+		<mx:Button x="145" y="107" label="Enter" click="currentState='lobby'"/>
+		<mx:Image x="10" y="38" width="98" height="91" source="assets/resources/600px-Smiley.svg.png"/>
+	</mx:Canvas>
 	
 </mx:Application>
