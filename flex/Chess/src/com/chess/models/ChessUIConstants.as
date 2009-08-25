@@ -5,7 +5,7 @@ package com.ubisoft.chess.models
 		public function ChessUIConstants()
 		{
 		}
-		public static const ROOT_URL:String="http://localhost:8090/amfphp/gateway.php"
+		public static const ROOT_URL:String="http://localhost/amfphp/gateway.php"
 		public static const AUTHENTICATE_SERVICE:String="com.ubisoft.chess.login.Authentication"
 	}
 }
