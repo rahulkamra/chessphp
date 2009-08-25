@@ -1,4 +1,4 @@
-package com.ubisoft.chess.models
+package com.chess.models
 {
 	public class ChessUIConstants
 	{

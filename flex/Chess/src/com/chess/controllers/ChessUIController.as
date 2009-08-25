@@ -1,4 +1,4 @@
-package com.ubisoft.chess.controllers
+package com.chess.controllers
 {
 	import mx.controls.Alert;
 	
