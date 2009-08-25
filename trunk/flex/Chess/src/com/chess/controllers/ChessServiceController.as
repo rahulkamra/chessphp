@@ -1,6 +1,6 @@
-package com.ubisoft.chess.controllers
+package com.chess.controllers
 {
-	import com.ubisoft.chess.models.ChessUIConstants;
+	import com.chess.models.ChessUIConstants;
 	
 	import mx.controls.Alert;
 	import mx.core.Application;
