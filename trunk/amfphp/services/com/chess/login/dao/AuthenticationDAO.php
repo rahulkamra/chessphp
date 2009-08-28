@@ -35,8 +35,10 @@ class AuthenticationDAO {
         NetDebug::trace('Adding Username');
         $con=Connection::createConnection();
         $result = mysql_query("INSERT INTO user (nickname) VALUES ('$username')");
-        mysql_query("commit");
+        $id=mysql_insert_id();
         Connection::closeConnection($con);
+        return $id;
+
     }
 }
 ?>

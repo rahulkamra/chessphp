@@ -30,11 +30,13 @@ class Authentication {
             $availability=$auth->isUsernameAvailable($username);
             if($availability){
                 //add in the database and return true
-                $auth->addUserName($username);
-                return true;
+                $id=$auth->addUserName($username);
+                $_SESSION['loggedin_user']=$username;
+                $_SESSION['loggedin_user_id']=$id;
+                return $id;
             }else{
                //username already in use
-               return false;
+               return 0;
             }
         }
 }

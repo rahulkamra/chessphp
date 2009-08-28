@@ -12,9 +12,9 @@
 
 class Connection {
     //put your code here
-    const server="localhost";
+    const server="127.0.0.1";
     const username="root";
-    const password="root";
+    const password="";
   
     public static function createConnection(){
         $con=mysql_connect(Connection::server, Connection::username,Connection::password);
