@@ -1,5 +1,6 @@
 package com.chess.controllers
 {
+	import com.chess.models.ChessProperties;
 	import com.chess.models.ChessUIConstants;
 	
 	import mx.controls.Alert;
@@ -30,7 +31,15 @@ package com.chess.controllers
 			authRo.chkUsername(username);
 		}
 		public function chkUsernameResultHandler(event:ResultEvent):void{
-			Application.application.currentState='lobby'
+			var result:Boolean=Boolean(event.result)
+			if(result){
+				//grant access
+				Application.application.currentState='lobby'
+			}else{
+				Application.application.lblUsernameError.text=ChessProperties.usernameExistError;
+				//username exist choosse another one
+				
+			}
 		}
 
 	}
