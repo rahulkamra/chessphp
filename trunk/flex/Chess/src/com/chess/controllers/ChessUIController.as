@@ -11,6 +11,9 @@ package com.chess.controllers
 		public function checkUsername(username:String):void{
 			Chess.chessServiceController.chkUsername(username);
 		}
+		public function saveChat(chatText:String,toUser:int):void{
+			Chess.chessServiceController.saveChat(chatText,toUser)
+		}
 
 	}
 }

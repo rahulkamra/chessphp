@@ -31,13 +31,35 @@ package com.chess.controllers
 			authRo.chkUsername(username);
 		}
 		public function chkUsernameResultHandler(event:ResultEvent):void{
-			var result:Boolean=Boolean(event.result)
-			if(result){
+			var result:int=int(event.result)
+			if(result != 0){
 				//grant access
 				Application.application.currentState='lobby'
+				Application.application.userName=Application.application.txiUsername.text;//saving the username for future refrence
+				Application.application.userId=result;
+				
 			}else{
 				Application.application.lblUsernameError.text=ChessProperties.usernameExistError;
 				//username exist choosse another one
+				
+			}
+		}
+		
+		public function saveChat(chatText:String,toUser:int):void{
+			var saveChatRO:RemoteObject=new RemoteObject;
+			saveChatRO.endpoint=ChessUIConstants.ROOT_URL;
+			saveChatRO.destination=ChessUIConstants.SAVE_CHAT_SERVICE;
+			saveChatRO.source=ChessUIConstants.SAVE_CHAT_SERVICE;
+			saveChatRO.addEventListener(FaultEvent.FAULT,myFaultHandler);
+			saveChatRO.addEventListener(ResultEvent.RESULT,saveChatResultHandler);
+			saveChatRO.saveChat(toUser,chatText);
+		}
+		public function saveChatResultHandler(event:ResultEvent):void{
+			var parentRef:Chess=Application.application as Chess
+			var chatText:String=event.result.message;
+			chatText=parentRef.userName + " : " + chatText;
+			if(Application.application.currentState == 'lobby'){
+				parentRef.txaLobbyShow.text=parentRef.txaLobbyShow.text+chatText+'\n'
 				
 			}
 		}
