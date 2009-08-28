@@ -27,9 +27,9 @@
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Canvas x="10" y="380"  cornerRadius="10" borderStyle="solid" borderColor="#000000">
-					<mx:TextArea x="5" y="131" width="282" height="36"/>
-					<mx:TextArea x="10" y="10" width="439" height="110"/>
-					<mx:Button x="310" y="135" label="Send"/>
+					<mx:TextInput x="5" y="131" width="282" height="36" id="txiLobbyChat" enter="sendChat()"/>
+					<mx:TextArea x="10" y="10" width="439" height="110" id="txaLobbyShow"/>
+					<mx:Button x="310" y="135" label="Send" click="sendChat()"/>
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
@@ -51,4 +51,6 @@
 		]]>
 	</mx:Script>
 	<mx:Script source="com/chess/AsFiles/Authentication.as"/>
+	<mx:Script source="com/chess/AsFiles/Synchronize.as"/>
+	<mx:Script source="com/chess/AsFiles/Chat.as"/>
 </mx:Application>
