@@ -9,9 +9,11 @@
  *
  * @author kaal
  */
+include_once("../dao/AuthenticationDAO.php");
+
 class Authentication {
     //put your code here
-
+    
     function Authentication(){
         $this->methodTable = array
         (
@@ -24,18 +26,16 @@ class Authentication {
     }
         
         function chkUsername($username){
-        NetDebug::trace($_SESSION['userlist']+1);
-        $_SESSION['userlist']=$_SESSION['userlist']+1;
-        NetDebug::trace($_SESSION['userlist']+1);
-        /*if(isset($GLOBALS['userlist'])){
-               $GLOBALS['userlist']=$GLOBALS['userlist']+1;
-               NetDebug::trace('here');
-        }else{
-            $GLOBALS['userlist']=1;
-            NetDebug::trace('there');
-        }*/
-        return $GLOBALS['userlist'];
-        
-    }
+            $auth=new AuthenticationDAO;
+            $availability=$auth->isUsernameAvailable($username);
+            if($availability){
+                //add in the database and return true
+                $auth->addUserName($username);
+                return true;
+            }else{
+               //username already in use
+               return false;
+            }
+        }
 }
 ?>
