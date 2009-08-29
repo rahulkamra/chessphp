@@ -29,11 +29,9 @@ class Chat {
         function saveChat($to,$message){
             $chat= new ChatModel();
             NetDebug::trace("Parr1".$message);
-
-            date_default_timezone_set ("Asia/Calcutta");
-            $date="";
+            
             $chat->message=$message;
-            $chat->from= $_SESSION['loggedin_user'];
+            $chat->from=  $_SESSION['loggedin_user_id'];
             NetDebug::trace("From".$chat->from);
             $chat->to=$to;
             if($to==NULL){
@@ -46,5 +44,6 @@ class Chat {
             return $chat;
 
         }
+        
 }
 ?>
