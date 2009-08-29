@@ -2,6 +2,7 @@ package com.chess.controllers
 {
 	import com.chess.models.ChessProperties;
 	import com.chess.models.ChessUIConstants;
+	import com.chess.models.SynchronizeRequestModel;
 	
 	import mx.controls.Alert;
 	import mx.core.Application;
@@ -43,6 +44,7 @@ package com.chess.controllers
 				//username exist choosse another one
 				
 			}
+			Application.application.synTimer.start();
 		}
 		
 		public function saveChat(chatText:String,toUser:int):void{
@@ -62,6 +64,20 @@ package com.chess.controllers
 				parentRef.txaLobbyShow.text=parentRef.txaLobbyShow.text+chatText+'\n'
 				
 			}
+		}
+		
+		public function synchronizeWithServer(syncModel:SynchronizeRequestModel):void{
+			var syncRo:RemoteObject=new RemoteObject;
+			syncRo.endpoint=ChessUIConstants.ROOT_URL;
+			syncRo.destination=ChessUIConstants.SYNC_SERVICE;
+			syncRo.source=ChessUIConstants.SYNC_SERVICE;
+			syncRo.addEventListener(FaultEvent.FAULT,myFaultHandler);
+			syncRo.addEventListener(ResultEvent.RESULT,synchronizeWithServerResultHandler);
+			syncRo.synchronizeWithServer(syncModel);
+		}
+		
+		public function synchronizeWithServerResultHandler(event:ResultEvent):void{
+			Alert.show(event.result.toString())
 		}
 
 	}
