@@ -59,14 +59,17 @@ package com.chess.controllers
 		public function saveChatResultHandler(event:ResultEvent):void{
 			var parentRef:Chess=Application.application as Chess
 			var chatText:String=event.result.message;
-			chatText=parentRef.userName + " : " + chatText;
-			if(Application.application.currentState == 'lobby'){
-				parentRef.txaLobbyShow.text=parentRef.txaLobbyShow.text+chatText+'\n'
-				
-			}
+			//var updatedText:String=Chess.chessUIController.addExtraRowInChatText(parentRef.txaLobbyShow.text,parentRef.userName,chatText);
+			//parentRef.txaLobbyShow.text=updatedText;
+			
+			//to take the scroll bar to the last position
+			//parentRef.txaLobbyShow.verticalScrollPosition=parentRef.txaLobbyShow.verticalScrollPosition+100;
+			
+			
 		}
 		
 		public function synchronizeWithServer(syncModel:SynchronizeRequestModel):void{
+			trace(syncModel.lastChatId + "    Last Chat Id")
 			var syncRo:RemoteObject=new RemoteObject;
 			syncRo.endpoint=ChessUIConstants.ROOT_URL;
 			syncRo.destination=ChessUIConstants.SYNC_SERVICE;
@@ -77,7 +80,15 @@ package com.chess.controllers
 		}
 		
 		public function synchronizeWithServerResultHandler(event:ResultEvent):void{
-			Alert.show(event.result.toString())
+			var responseChatSyncArrray:Array=event.result.chatSynArray;
+			trace("event.result" + "Length of Array is " +responseChatSyncArrray.length )
+			//trace(responseChatSyncArrray[0].fromName
+			
+			if(responseChatSyncArrray.length >0){
+				Chess.chessUIController.displayChat(responseChatSyncArrray);	
+			}else{
+				//no new chat to update
+			}
 		}
 
 	}
