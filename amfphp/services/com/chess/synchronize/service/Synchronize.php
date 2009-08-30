@@ -10,10 +10,12 @@
  * @author hp
  */
 include_once("../model/SynchronizeRequestModel.php");
+include_once("../model/SynchronizeResponseModel.php");
 include_once("../../chat/util/ChatUtil.php");
 include_once("../../chat/dao/ChatDAO.php");
 include_once("../../chat/model/ChatModel.php");
 include_once("../../util/Connection.php");
+include_once("../../chat/model/ChatSyncModel.php");
 
 class Synchronize {
     //put your code here
@@ -29,11 +31,17 @@ class Synchronize {
     }
 
     public function synchronizeWithServer($synModel){
-       
+        $objToReturn= new SynchronizeResponseModel();
         $lastChatId=$synModel[SynchronizeRequestModel::lastChatId];
-         NetDebug::printr("Partestr1".$lastChatId);
-         $syn=new ChatUtil();
-         $syn->synchronizeChat($chatMapId);
+        //$lastChatId=0;
+        NetDebug::printr("Partestr1".$lastChatId);
+
+        $syn=new ChatUtil();
+        $chatSyncArray=$syn->synchronizeChat($lastChatId);
+        $objToReturn->chatSynArray=$chatSyncArray;
+        return $objToReturn;
+
+
 
     }
 }

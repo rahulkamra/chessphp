@@ -11,5 +11,7 @@
  */
 class SynchronizeResponseModel {
     //put your code here
+    public $chatSynArray; //Array of Chat Syn models
+    
 }
 ?>

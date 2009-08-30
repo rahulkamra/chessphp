@@ -13,10 +13,29 @@ class ChatDAO{
         $cmid=$this->saveChatMapping($id,$chat->message,$chat->timeStamp);
         Connection::closeConnection($con);
     }
+    public function checkForChat($from,$to){
+        $result = mysql_query("SELECT * from chat WHERE chat.from='$from' AND chat.to='$to'");
+         if(mysql_num_rows($result) == 1){
+             //means already exist return id
+             $tempArray=mysql_fetch_array($result);
+             NetDebug::trace($tempArray[0]['id']);
+             return $tempArray[0]['id'];
+        }else{
+            //retun zero so that a new row can be inserted
+            return 0;
+        }
+    }
     public function saveChat($from,$to){
-        $result = mysql_query("INSERT INTO chat VALUES ('','$from','$to')");
-        $id=mysql_insert_id();
-        return $id;
+        $id=$this->checkForChat($from, $to);
+        if($id != 0){
+            return $id;
+        }else{
+            //insert
+            $result = mysql_query("INSERT INTO chat VALUES ('','$from','$to')");
+            $id=mysql_insert_id();
+            return $id;
+        }
+        
     }
     public function saveChatMapping($id,$msg,$time){
         $result=mysql_query("INSERT INTO chatmapping VALUES('','$id','$msg',NOW())");
@@ -24,17 +43,43 @@ class ChatDAO{
     }
     public function getChatById($chatMapId){
         $con=Connection::createConnection();
-        $result=mysql_query("SELECT * FROM chatmapping,chat WHERE chat.id=chatmapping.chatid and chatmapping.chatid>'$chatMapId' and chat.to=0");
+        $result=mysql_query("SELECT chatmapping.id,chat.from,chatmapping.text,chatmapping.timestamp,user.nickname FROM chatmapping,chat,user WHERE chat.id=chatmapping.chatid and chatmapping.chatid>'$chatMapId' and chat.to=0 and user.id=chat.from");
        // $dataSet=mysql_fetch_array($result);
-        while($row = mysql_fetch_array($result))
-        {
-            NetDebug::printr($row['']);
-             echo "<br />";
+       $arrayToReturn = array();
+        while($row = mysql_fetch_array($result)){
+            $eachObject = new ChatSyncModel();
+            $eachObject->cmid=$row['id'];
+            $eachObject->fromId=$row['from'];
+            $eachObject->fromName=$row['nickname'];
+            $eachObject->text=$row['text'];
+            $eachObject->timeStamp=$row['timestamp'];
+            array_push($arrayToReturn, $eachObject);
         }
-
-
-        
         Connection::closeConnection($con);
+        NetDebug::printr($arrayToReturn);
+        return $arrayToReturn;
+        
+    }
+
+    public function getLastObject(){
+        $con=Connection::createConnection();
+        $result=mysql_query("SELECT chatmapping.id,chat.from,chatmapping.text,chatmapping.timestamp,user.nickname FROM chatmapping,chat,user WHERE chat.id=chatmapping.chatid and chatmapping.chatid>'$chatMapId' and chat.to=0 and user.id=chat.from ORDER BY id DESC LIMIT 1");
+        
+        $row=mysql_fetch_row($result);
+        NetDebug::printr($row);
+        $arrayToReturn = array();
+        
+        $eachObject = new ChatSyncModel();
+        $eachObject->cmid=$row[0];
+        $eachObject->fromId=$row[1];
+        $eachObject->text=$row[2];
+        $eachObject->timeStamp=$row[3];
+        $eachObject->fromName=$row[4];
+        
+        array_push($arrayToReturn, $eachObject);
+            
+        Connection::closeConnection($con);
+        return $arrayToReturn;
     }
 
 }

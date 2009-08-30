@@ -11,5 +11,12 @@
  */
 class ChatSyncModel {
     //put your code here
+    public $cmid;
+    public $fromId;
+    public $fromName;
+    public $text;
+    public $timeStamp;
+    
+
 }
 ?>
