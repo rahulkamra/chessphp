@@ -5,7 +5,7 @@ package com.chess.models
 		public function ChessUIConstants()
 		{
 		}
-		public static const POLLING_TIME:int=1000;//in milli second
+		public static const POLLING_TIME:int=3000;//in milli second
 		public static const LOBBY_CHAT:String = 'lobbychat';
 		public static const GAME_CHAT:String= 'gamechat'
 		public static const ROOT_URL:String="http://192.168.1.8/amfphp/gateway.php"
