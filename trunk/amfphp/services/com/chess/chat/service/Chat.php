@@ -11,6 +11,7 @@
  */
 include_once("../dao/ChatDAO.php");
 include_once("../model/ChatModel.php");
+include_once("../../util/Connection.php");
 
 class Chat {
     //put your code here
@@ -27,9 +28,9 @@ class Chat {
     }
 
         function saveChat($to,$message){
-            $chat= new ChatModel();
+           $chat= new ChatModel();
             NetDebug::trace("Parr1".$message);
-            
+
             $chat->message=$message;
             $chat->from=  $_SESSION['loggedin_user_id'];
             NetDebug::trace("From".$chat->from);

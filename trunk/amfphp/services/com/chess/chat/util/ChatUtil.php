@@ -16,7 +16,11 @@ class ChatUtil {
     function synchronizeChat($chatMapId){
 
             $syn=new ChatDAO();
-            $syn->getChatById($chatMapId);
+            if($chatMapId==0){
+                return $syn->getLastObject();
+            }else{
+                return $syn->getChatById($chatMapId);
+            }
            // return $chat;
 
         }
