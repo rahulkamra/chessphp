@@ -33,10 +33,10 @@ class Synchronize {
     public function synchronizeWithServer($synModel){
         $objToReturn= new SynchronizeResponseModel();
         $lastChatId=$synModel[SynchronizeRequestModel::lastChatId];
-        //$lastChatId=0;
-        NetDebug::printr("Partestr1".$lastChatId);
+        NetDebug::printr("Partestr1". + "    " .$lastChatId);
 
         $syn=new ChatUtil();
+        //$lastChatId=97;
         $chatSyncArray=$syn->synchronizeChat($lastChatId);
         $objToReturn->chatSynArray=$chatSyncArray;
         return $objToReturn;

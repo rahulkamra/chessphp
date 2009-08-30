@@ -34,8 +34,9 @@ class Chat {
             $chat->message=$message;
             $chat->from=  $_SESSION['loggedin_user_id'];
             NetDebug::trace("From".$chat->from);
+            NetDebug::trace("Logged IN USER is $chat->from");
             $chat->to=$to;
-            if($to==NULL){
+            if($to==0){
                 //Group Chat
             }else{
                 //One 2 one chat

@@ -11,6 +11,7 @@
  */
 class ChatModel {
     //put your code here
+    public $chatId;
     public $to;
     public $from;
     public $message;
