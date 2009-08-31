@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="*" xmlns:ns2="com.chess.components.*" creationComplete="timerInit()">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="*" xmlns:ns2="com.app.components.*" creationComplete="timerInit()">
 	<mx:states>
 		<mx:State name="lobby">
 			<mx:RemoveChild target="{canvas1}"/>
@@ -51,13 +51,13 @@
 	</mx:Canvas>
 	<mx:Script>
 		<![CDATA[
-			import com.chess.controllers.ChessServiceController;
-			import com.chess.controllers.ChessUIController;
+			import com.app.controllers.ChessServiceController;
+			import com.app.controllers.ChessUIController;
 			public static var chessUIController:ChessUIController=new ChessUIController;
 			public static var chessServiceController:ChessServiceController=new ChessServiceController;
 		]]>
 	</mx:Script>
-	<mx:Script source="com/chess/AsFiles/Authentication.as"/>
-	<mx:Script source="com/chess/AsFiles/Synchronize.as"/>
-	<mx:Script source="com/chess/AsFiles/Chat.as"/>
+	<mx:Script source="com/app/AsFiles/Authentication.as"/>
+	<mx:Script source="com/app/AsFiles/Synchronize.as"/>
+	<mx:Script source="com/app/AsFiles/Chat.as"/>
 </mx:Application>
