@@ -5,16 +5,15 @@
  */
 
 /**
- * Description of LobbyUtil
+ * Description of LobbyInfo
  *
  * @author admin
  */
-class LobbyUtil {
+class LobbyInfo {
     //put your code here
-
-    public function synchronizeLobby(){
-        $lobbyDao=new LobbyDAO;
-        $lobbyDao->getLatestLobbyInfo();
-    }
+    public $lobbyName;
+    public $isFree;
+    public $firstPlayer;
+    public $secondPlayer;
 }
 ?>

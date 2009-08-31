@@ -18,7 +18,8 @@ class LobbyDAO {
     function addNewPlayerToLobby($playerId,$lobbyName){
         $conn=Connection::createConnection();
         if($this->IsLobbyFree($lobbyName)){
-            
+             
+             
         }
         Connection::closeConnection($con);
 
@@ -29,7 +30,21 @@ class LobbyDAO {
     }
     
     function IsLobbyFree($lobbyName){
+        $result = mysql_query("SELECT * from game WHERE game.lobbyname='$lobbyName'");
+        $tempArray=mysql_fetch_array($result);
         
+        
+    }
+
+    function getLatestLobbyInfo(){
+        $con=Connection::createConnection();
+        $result = mysql_query("SELECT * from game");
+        while($row = mysql_fetch_array($result)){
+            NetDebug::trace('here');
+            NetDebug::trace($row);
+         }
+
+        Connection::closeConnection($con);
     }
 }
 ?>

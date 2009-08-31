@@ -22,7 +22,7 @@ class Connection {
             NetDebug::trace('Could Not connect');
              die('Could not connect: ' . mysql_error());
         }
-        mysql_select_db("chess", $con);
+        mysql_select_db("game", $con);
         return $con;
     }
     public static function closeConnection($con){

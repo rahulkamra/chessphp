@@ -12,6 +12,7 @@
 class SynchronizeResponseModel {
     //put your code here
     public $chatSynArray; //Array of Chat Syn models
+    public $lobbyInfoArray; //Array of Lobby Info Models
     
 }
 ?>

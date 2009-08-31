@@ -48,7 +48,6 @@ class ChatDAO{
     }
     public function getChatById($chatMapId){
         $con=Connection::createConnection();
-        NetDebug::printr($chatMapId);
         
         $result=mysql_query("SELECT chatmapping.id,chat.from,chatmapping.text,chatmapping.timestamp,user.nickname FROM chatmapping,chat,user WHERE chat.id=chatmapping.chatid and chatmapping.id >'$chatMapId' and chat.to=0 and user.id=chat.from");
        $arrayToReturn = array();
@@ -62,7 +61,6 @@ class ChatDAO{
             array_push($arrayToReturn, $eachObject);
         }
         Connection::closeConnection($con);
-        NetDebug::printr($arrayToReturn);
 
         return $arrayToReturn;
         
@@ -73,7 +71,6 @@ class ChatDAO{
         $result=mysql_query("SELECT chatmapping.id,chat.from,chatmapping.text,chatmapping.timestamp,user.nickname FROM chatmapping,chat,user WHERE chat.id=chatmapping.chatid and chatmapping.id>'$chatMapId' and chat.to=0 and user.id=chat.from ORDER BY id DESC LIMIT 1");
         
         $row=mysql_fetch_row($result);
-        NetDebug::printr($row);
         $arrayToReturn = array();
         
         $eachObject = new ChatSyncModel();
