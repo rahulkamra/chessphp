@@ -1,7 +1,7 @@
-package com.chess.models
+package com.app.models
 {
 	[Bindable]
-	[RemoteClass(alias="com.chess.chat.model.ChatSyncModel")]
+	[RemoteClass(alias="com.app.chat.model.ChatSyncModel")]
 	public class ChatSyncModel
 	{
 		public function ChatSyncModel()
