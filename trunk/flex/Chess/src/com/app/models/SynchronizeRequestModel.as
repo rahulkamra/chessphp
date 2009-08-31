@@ -1,7 +1,7 @@
-package com.chess.models
+package com.app.models
 {
 	[Bindable]
-	[RemoteClass(alias="com.chess.synchronize.model.SynchronizeRequestModel")]
+	[RemoteClass(alias="com.app.synchronize.model.SynchronizeRequestModel")]
 	public class SynchronizeRequestModel
 	{
 		public function SynchronizeRequestModel()

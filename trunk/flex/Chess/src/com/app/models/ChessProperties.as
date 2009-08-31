@@ -1,4 +1,4 @@
-package com.chess.models
+package com.app.models
 {
 	public class ChessProperties
 	{

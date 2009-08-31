@@ -1,5 +1,5 @@
 // ActionScript file
-import com.chess.models.ChessUIConstants;
+import com.app.models.ChessUIConstants;
 
 import flash.events.TimerEvent;
 import flash.utils.Timer;

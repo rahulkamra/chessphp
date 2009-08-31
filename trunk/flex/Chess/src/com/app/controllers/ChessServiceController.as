@@ -1,8 +1,8 @@
-package com.chess.controllers
+package com.app.controllers
 {
-	import com.chess.models.ChessProperties;
-	import com.chess.models.ChessUIConstants;
-	import com.chess.models.SynchronizeRequestModel;
+	import com.app.models.ChessProperties;
+	import com.app.models.ChessUIConstants;
+	import com.app.models.SynchronizeRequestModel;
 	
 	import mx.controls.Alert;
 	import mx.core.Application;
