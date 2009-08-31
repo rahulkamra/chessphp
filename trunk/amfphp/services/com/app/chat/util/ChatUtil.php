@@ -19,7 +19,6 @@ class ChatUtil {
             if($chatMapId==0){
                 return $syn->getLastObject();
             }else{
-                NetDebug::printr("Rahul");
                 return $syn->getChatById($chatMapId);
             }
            // return $chat;

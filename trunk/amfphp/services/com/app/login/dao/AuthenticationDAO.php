@@ -14,8 +14,7 @@ class AuthenticationDAO {
     //put your code here
     
     public function isUsernameAvailable($username){
-        NetDebug::trace('Checking Username');
-
+        
         $con=Connection::createConnection();
         $result = mysql_query("SELECT * FROM user WHERE nickname = '$username'");
         $flagToReturn=false;

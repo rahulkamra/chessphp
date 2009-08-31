@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 25, 2009 at 02:03 PM
+-- Generation Time: Aug 31, 2009 at 12:40 PM
 -- Server version: 5.0.45
 -- PHP Version: 5.2.9
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `chess`
+-- Database: `game`
 --
 
 -- --------------------------------------------------------
@@ -64,15 +64,26 @@ CREATE TABLE IF NOT EXISTS `chatmapping` (
 
 CREATE TABLE IF NOT EXISTS `game` (
   `id` int(10) unsigned NOT NULL auto_increment,
+  `lobbyname` varchar(30) character set armscii8 collate armscii8_bin NOT NULL,
   `player1` int(10) unsigned NOT NULL default '0',
   `player2` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `game`
 --
 
+INSERT INTO `game` (`id`, `lobbyname`, `player1`, `player2`) VALUES
+(1, 'lobby1', 0, 0),
+(2, 'lobby2', 0, 0),
+(3, 'lobby3', 0, 0),
+(4, 'lobby4', 0, 0),
+(5, 'lobby5', 0, 0),
+(6, 'lobby6', 0, 0),
+(7, 'lobby7', 0, 0),
+(8, 'lobby8', 0, 0),
+(9, 'lobby9', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -108,33 +119,3 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `chat`
---
-ALTER TABLE `chat`
-  ADD CONSTRAINT `FK_Chat_1` FOREIGN KEY (`from`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `FK_Chat_2` FOREIGN KEY (`to`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `chatmapping`
---
-ALTER TABLE `chatmapping`
-  ADD CONSTRAINT `FK_chatmapping_1` FOREIGN KEY (`chatid`) REFERENCES `chat` (`id`);
-
---
--- Constraints for table `game`
---
-ALTER TABLE `game`
-  ADD CONSTRAINT `FK_game_1` FOREIGN KEY (`player1`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `FK_game_2` FOREIGN KEY (`player2`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `gamedata`
---
-ALTER TABLE `gamedata`
-  ADD CONSTRAINT `FK_gamedata_1` FOREIGN KEY (`gameid`) REFERENCES `game` (`id`);
