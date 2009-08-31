@@ -11,6 +11,7 @@ class ChatDAO{
         $con=Connection::createConnection();
         $id=$this->saveChat($chat->from,$chat->to);
         $cmid=$this->saveChatMapping($id,$chat->message,$chat->timeStamp);
+        mysql_query("commit");
         $chat->chatId=$cmid;
         Connection::closeConnection($con);
     }
@@ -34,14 +35,15 @@ class ChatDAO{
             return $id;
         }else{
             //insert
-            $result = mysql_query("INSERT INTO chat VALUES ('','$from','$to')");
+            $result = mysql_query("INSERT INTO chat VALUES (NULL,'$from','$to')");
             $id=mysql_insert_id();
+            NetDebug::trace('Ok');
             return $id;
         }
         
     }
     public function saveChatMapping($id,$msg,$time){
-        $result=mysql_query("INSERT INTO chatmapping VALUES('','$id','$msg',NOW())");
+        $result=mysql_query("INSERT INTO chatmapping VALUES(NULL,'$id','$msg',NOW())");
         return mysql_insert_id();
     }
     public function getChatById($chatMapId){
