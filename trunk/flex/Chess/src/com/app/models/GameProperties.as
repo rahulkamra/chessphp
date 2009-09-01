@@ -1,8 +1,8 @@
 package com.app.models
 {
-	public class ChessProperties
+	public class GameProperties
 	{
-		public function ChessProperties()
+		public function GameProperties()
 		{
 		}
 		
