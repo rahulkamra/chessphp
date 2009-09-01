@@ -9,11 +9,13 @@
  *
  * @author admin
  */
-class LobbyInfo {
+class LobbyInfoModel {
     //put your code here
     public $lobbyName;
     public $isFree;
-    public $firstPlayer;
-    public $secondPlayer;
+    public $firstPlayerName;
+    public $firstPlayerId;
+    public $secondPlayerId;
+    public $secondPlayerName;
 }
 ?>
