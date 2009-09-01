@@ -1,7 +1,7 @@
 package com.app.controllers
 {
-	import com.app.models.ChessProperties;
-	import com.app.models.ChessUIConstants;
+	import com.app.models.GameProperties;
+	import com.app.models.GameUIConstants;
 	import com.app.models.SynchronizeRequestModel;
 	
 	import mx.controls.Alert;
@@ -10,9 +10,9 @@ package com.app.controllers
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.remoting.mxml.RemoteObject;
 	
-	public class ChessServiceController
+	public class GameServiceController
 	{
-		public function ChessServiceController()
+		public function GameServiceController()
 		{
 			
 		}
@@ -24,9 +24,9 @@ package com.app.controllers
 		
 		public function chkUsername(username:String):void{
 			var authRo:RemoteObject=new RemoteObject;
-			authRo.endpoint=ChessUIConstants.ROOT_URL;
-			authRo.destination=ChessUIConstants.AUTHENTICATE_SERVICE;
-			authRo.source=ChessUIConstants.AUTHENTICATE_SERVICE;
+			authRo.endpoint=GameUIConstants.ROOT_URL;
+			authRo.destination=GameUIConstants.AUTHENTICATE_SERVICE;
+			authRo.source=GameUIConstants.AUTHENTICATE_SERVICE;
 			authRo.addEventListener(FaultEvent.FAULT,myFaultHandler);
 			authRo.addEventListener(ResultEvent.RESULT,chkUsernameResultHandler);
 			authRo.chkUsername(username);
@@ -40,7 +40,7 @@ package com.app.controllers
 				Application.application.userId=result;
 				
 			}else{
-				Application.application.lblUsernameError.text=ChessProperties.usernameExistError;
+				Application.application.lblUsernameError.text=GameProperties.usernameExistError;
 				//username exist choosse another one
 				
 			}
@@ -49,15 +49,15 @@ package com.app.controllers
 		
 		public function saveChat(chatText:String,toUser:int):void{
 			var saveChatRO:RemoteObject=new RemoteObject;
-			saveChatRO.endpoint=ChessUIConstants.ROOT_URL;
-			saveChatRO.destination=ChessUIConstants.SAVE_CHAT_SERVICE;
-			saveChatRO.source=ChessUIConstants.SAVE_CHAT_SERVICE;
+			saveChatRO.endpoint=GameUIConstants.ROOT_URL;
+			saveChatRO.destination=GameUIConstants.SAVE_CHAT_SERVICE;
+			saveChatRO.source=GameUIConstants.SAVE_CHAT_SERVICE;
 			saveChatRO.addEventListener(FaultEvent.FAULT,myFaultHandler);
 			saveChatRO.addEventListener(ResultEvent.RESULT,saveChatResultHandler);
 			saveChatRO.saveChat(toUser,chatText);
 		}
 		public function saveChatResultHandler(event:ResultEvent):void{
-			var parentRef:Chess=Application.application as Chess
+			var parentRef:Game=Application.application as Game
 			var chatText:String=event.result.message;
 			//var updatedText:String=Chess.chessUIController.addExtraRowInChatText(parentRef.txaLobbyShow.text,parentRef.userName,chatText);
 			//parentRef.txaLobbyShow.text=updatedText;
@@ -71,9 +71,9 @@ package com.app.controllers
 		public function synchronizeWithServer(syncModel:SynchronizeRequestModel):void{
 			trace(syncModel.lastChatId + "    Last Chat Id")
 			var syncRo:RemoteObject=new RemoteObject;
-			syncRo.endpoint=ChessUIConstants.ROOT_URL;
-			syncRo.destination=ChessUIConstants.SYNC_SERVICE;
-			syncRo.source=ChessUIConstants.SYNC_SERVICE;
+			syncRo.endpoint=GameUIConstants.ROOT_URL;
+			syncRo.destination=GameUIConstants.SYNC_SERVICE;
+			syncRo.source=GameUIConstants.SYNC_SERVICE;
 			syncRo.addEventListener(FaultEvent.FAULT,myFaultHandler);
 			syncRo.addEventListener(ResultEvent.RESULT,synchronizeWithServerResultHandler);
 			syncRo.synchronizeWithServer(syncModel);
@@ -85,7 +85,7 @@ package com.app.controllers
 			//trace(responseChatSyncArrray[0].fromName
 			
 			if(responseChatSyncArrray.length >0){
-				Chess.chessUIController.displayChat(responseChatSyncArrray);	
+				Game.chessUIController.displayChat(responseChatSyncArrray);	
 			}else{
 				//no new chat to update
 			}

@@ -1,23 +1,23 @@
 package com.app.controllers
 {
-	import com.app.models.ChessUIConstants;
+	import com.app.models.GameUIConstants;
 	import com.app.models.SynchronizeRequestModel;
 	
 	import mx.core.Application;
 	
-	public class ChessUIController
+	public class GameUIController
 	{
-		public function ChessUIController()
+		public function GameUIController()
 		{
 		}
 		
 		public var lastLobbyChatId:int=0;
 		
 		public function checkUsername(username:String):void{
-			Chess.chessServiceController.chkUsername(username);
+			Game.chessServiceController.chkUsername(username);
 		}
 		public function saveChat(chatText:String,toUser:int):void{
-			Chess.chessServiceController.saveChat(chatText,toUser)
+			Game.chessServiceController.saveChat(chatText,toUser)
 		}
 		public function syncronizeChat():void{
 			var syncModel:SynchronizeRequestModel=new SynchronizeRequestModel;
@@ -25,16 +25,16 @@ package com.app.controllers
 			
 			if(Application.application.currentState == 'lobby'){
 				//if lobby then only sync lobby chat
-				syncModel.chatType=ChessUIConstants.LOBBY_CHAT;
+				syncModel.chatType=GameUIConstants.LOBBY_CHAT;
 			}else{
 				
 			}
-			Chess.chessServiceController.synchronizeWithServer(syncModel);
+			Game.chessServiceController.synchronizeWithServer(syncModel);
 		}
 		
 		
 		public function displayChat(newChat:Array):void{
-			var parentRef:Chess=Application.application as Chess;
+			var parentRef:Game=Application.application as Game;
 			var updatedText:String=""
 			if(Application.application.currentState == 'lobby'){
 				

@@ -1,8 +1,8 @@
 package com.app.models
 {
-	public class ChessUIConstants
+	public class GameUIConstants
 	{
-		public function ChessUIConstants()
+		public function GameUIConstants()
 		{
 		}
 		public static const POLLING_TIME:int=3000;//in milli second

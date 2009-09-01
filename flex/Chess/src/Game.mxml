@@ -51,10 +51,10 @@
 	</mx:Canvas>
 	<mx:Script>
 		<![CDATA[
-			import com.app.controllers.ChessServiceController;
-			import com.app.controllers.ChessUIController;
-			public static var chessUIController:ChessUIController=new ChessUIController;
-			public static var chessServiceController:ChessServiceController=new ChessServiceController;
+			import com.app.controllers.GameServiceController;
+			import com.app.controllers.GameUIController;
+			public static var chessUIController:GameUIController=new GameUIController;
+			public static var chessServiceController:GameServiceController=new GameServiceController;
 		]]>
 	</mx:Script>
 	<mx:Script source="com/app/AsFiles/Authentication.as"/>
