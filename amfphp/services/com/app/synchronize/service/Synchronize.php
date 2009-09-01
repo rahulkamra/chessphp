@@ -50,8 +50,6 @@ class Synchronize {
         $objToReturn->lobbyInfoArray=$lobbySyncArray;
         return $objToReturn;
 
-
-
     }
 }
 ?>

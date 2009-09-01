@@ -14,7 +14,7 @@ class LobbyUtil {
 
     public function synchronizeLobby(){
         $lobbyDao=new LobbyDAO;
-        $lobbyDao->getLatestLobbyInfo();
+        return $lobbyDao->getLatestLobbyInfo();
     }
 }
 ?>
