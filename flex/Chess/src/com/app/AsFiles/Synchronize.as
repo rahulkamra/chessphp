@@ -10,5 +10,5 @@ public function timerInit():void{
 	synTimer.addEventListener(TimerEvent.TIMER,synchronize);
 }
 public function synchronize(event:TimerEvent):void{
-	Game.chessUIController.syncronizeChat();
+	Game.gameUIController.syncronizeChat();
 }
