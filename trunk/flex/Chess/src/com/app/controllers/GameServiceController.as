@@ -59,11 +59,7 @@ package com.app.controllers
 		public function saveChatResultHandler(event:ResultEvent):void{
 			var parentRef:Game=Application.application as Game
 			var chatText:String=event.result.message;
-			//var updatedText:String=Chess.chessUIController.addExtraRowInChatText(parentRef.txaLobbyShow.text,parentRef.userName,chatText);
-			//parentRef.txaLobbyShow.text=updatedText;
 			
-			//to take the scroll bar to the last position
-			//parentRef.txaLobbyShow.verticalScrollPosition=parentRef.txaLobbyShow.verticalScrollPosition+100;
 			
 			
 		}
@@ -81,13 +77,18 @@ package com.app.controllers
 		
 		public function synchronizeWithServerResultHandler(event:ResultEvent):void{
 			var responseChatSyncArrray:Array=event.result.chatSynArray;
+			var lobbySync:Array=event.result.lobbyInfoArray;
 			trace("event.result" + "Length of Array is " +responseChatSyncArrray.length )
 			//trace(responseChatSyncArrray[0].fromName
-			
+			if(lobbySync)
 			if(responseChatSyncArrray.length >0){
-				Game.chessUIController.displayChat(responseChatSyncArrray);	
+				Game.gameUIController.displayChat(responseChatSyncArrray);	
 			}else{
 				//no new chat to update
+			}
+			if(lobbySync){
+				Game.gameUIController.changeRoomData(lobbySync);
+				
 			}
 		}
 

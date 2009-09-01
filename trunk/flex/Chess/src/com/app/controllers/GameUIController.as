@@ -1,5 +1,6 @@
 package com.app.controllers
 {
+	import com.app.components.GameShow;
 	import com.app.models.GameUIConstants;
 	import com.app.models.SynchronizeRequestModel;
 	
@@ -14,10 +15,10 @@ package com.app.controllers
 		public var lastLobbyChatId:int=0;
 		
 		public function checkUsername(username:String):void{
-			Game.chessServiceController.chkUsername(username);
+			Game.gameServiceController.chkUsername(username);
 		}
 		public function saveChat(chatText:String,toUser:int):void{
-			Game.chessServiceController.saveChat(chatText,toUser)
+			Game.gameServiceController.saveChat(chatText,toUser)
 		}
 		public function syncronizeChat():void{
 			var syncModel:SynchronizeRequestModel=new SynchronizeRequestModel;
@@ -29,7 +30,7 @@ package com.app.controllers
 			}else{
 				
 			}
-			Game.chessServiceController.synchronizeWithServer(syncModel);
+			Game.gameServiceController.synchronizeWithServer(syncModel);
 		}
 		
 		
@@ -58,6 +59,31 @@ package com.app.controllers
 			chatText=username + " : " + chatText;
 			chatHistory=chatHistory+chatText+'\n'
 			return chatHistory
+		}
+		public function changeRoomData(lobbydata:Array):void{
+			for(var count:int = 0 ;count<lobbydata.length ; count++){
+				//every child is of the type game show
+				var eachChild:GameShow=Application.application.cvsLobby.getChildren()[count];
+				var eachData:Object=lobbydata[count];
+				
+				
+				eachChild.playerTwoName=eachData.secondPlayerName;
+				if(eachData.firstPlayerName){
+					eachChild.playerOneName=eachData.firstPlayerName;
+					eachChild.playerOneReady=true;
+				}else{
+					eachChild.playerOneName='';
+					eachChild.playerOneReady=false
+				}
+				
+				if(eachData.secondPlayerName){
+					eachChild.playerTwoName=eachData.secondPlayerName;
+					eachChild.playerTwoReady=true;
+				}else{
+					eachChild.playerTwoName='';
+					eachChild.playerTwoReady=false
+				}
+			}
 		}
 
 	}
